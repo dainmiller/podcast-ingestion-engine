@@ -112,6 +112,7 @@
   - Title
   - Description
   - Status
+  - has_many :shows
 
 - Comment
   
