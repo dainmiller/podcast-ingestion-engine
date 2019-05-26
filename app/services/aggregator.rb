@@ -1,6 +1,6 @@
 class Aggregator
 
-  attr_accessor :validator, :parser
+  attr_accessor :validator, :parser, :saver
 
   def initialize ; end
 
@@ -23,10 +23,15 @@ class Aggregator
 
   private
   def run! feed
+    xml = HTTParty.get(feed, headers: {
+      'User-Agent': 'HTTParty',
+      'Content-Type': 'application/xml'
+    }).body
+
     [Validator, Parser, Saver].each do |klass|
-      @validator  = klass.new(feed) if klass.eql? Validator
-      @parser     = klass.new(feed) if klass.eql? Parser
-      @saver      = klass.new(feed) if klass.eql? Saver
+      @validator  = klass.new(xml)      if klass.eql? Validator
+      @parser     = klass.new(xml)      if klass.eql? Parser and @validator.valid?
+      @saver      = klass.new(@parser)  if klass.eql? Saver and @parser.parsed?
     end
   end
 

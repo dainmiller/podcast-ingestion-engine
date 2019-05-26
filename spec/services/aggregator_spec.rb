@@ -10,37 +10,50 @@ end
 RSpec.describe Aggregator, type: :model do
 
   describe "the ability to pass in & save feeds" do
-    it "should be able to take in more than 1 feed at a time" do
+    before(:each) {
       @aggregator = Aggregator.new
+    }
+
+    it "should be able to take in more than 1 feed at a time" do
       @aggregator.bulk_queue(feeds: [feed_test_one, feed_test_two])
       expect(@aggregator.feed_count).to eq(2)
     end
 
     it "should be able to take in 1 feed at a time" do
-      @aggregator = Aggregator.new
       @aggregator.queue(feed: [feed_test_one])
       expect(@aggregator.feed_count).to eq(1)
     end
 
     it "should validate the feed passed in" do
-      @aggregator = Aggregator.new
-      @aggregator.queue(feed: [feed_test_one])
+      @aggregator.queue(feed: [feed_test_two])
       expect(@aggregator.validator.respond_to?(:validate)).to eq(true)
       expect(@aggregator.validator.valid?).to eq(true)
     end
 
+    it "should not move onto parse step if not valid" do
+      @aggregator.queue(feed: ["http://google.com"])
+      expect(@aggregator.validator.valid?).to eq(false)
+      expect(@aggregator.parser).to be_nil
+    end
+
     it "should parse the feed passed in" do
-      @aggregator = Aggregator.new
       @aggregator.queue(feed: [feed_test_one])
       expect(@aggregator.parser.respond_to?(:parse)).to eq(true)
       expect(@aggregator.parser.parsed?).to eq(true)
     end
 
-    it "should save the <channel> (xml terminology) attributes as a show object" do
+    # it "should not move onto the save step if not parsed" do
+    #   @aggregator.queue(feed: ["http://google.com"])
+    #   expect(@aggregator.parser.parsed?).to eq(false)
+    #   expect(@aggregator.saver).to be_nil
+    # end
+
+    it "should save the feed passed in" do
+      @aggregator.queue(feed: [feed_test_one])
+      expect(@aggregator.saver.respond_to?(:save)).to eq(true)
+      expect(@aggregator.saver.saved?).to eq(true)
     end
 
-    it "should save the <item> (xml terminology) as episode objects" do
-    end
   end
 end
 

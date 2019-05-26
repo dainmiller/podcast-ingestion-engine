@@ -1,11 +1,7 @@
 class Validator
   attr_accessor :validate
-  def initialize feed
-    @feed = feed
-    @xml  = HTTParty.get(@feed, headers: {
-      'User-Agent': 'HTTParty',
-      'Content-Type': 'application/xml'
-    }).body
+  def initialize xml
+    @xml = xml
     validate
   end
 
