@@ -9,7 +9,7 @@ class Aggregator
     bulk_queue feeds: feed
   end
 
-  def bulk_queue(feeds:i)
+  def bulk_queue(feeds:)
     raise_if_not_array_type feeds
     @feeds = feeds
     feeds.each do |feed|
