@@ -6,14 +6,24 @@ class Saver
   end
 
   def save
-    @show = Show.find_or_create_by!(title: @parser.parsed_feed.title)
+    @category = Category.save_from(@parser.parsed_feed)
+    @show     = Show.save_from(@parser.parsed_feed)
+
+    @show.update!(
+      category: @category,
+      description: @parser.parsed_feed.description
+    )
 
     @parser.parsed_feed.entries.each do |entry|
-      @show.episodes.find_or_create_by!(
-        title: entry.title,
+
+      episode = @show.episodes.find_or_create_by!(title: entry.title)
+
+      episode.update!(
         description: entry.summary,
-        streaming_url: entry.enclosure_url
+        streaming_url: entry.enclosure_url,
+        guid: entry.entry_id
       )
+
     end
   end
 

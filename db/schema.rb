@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_26_235532) do
+ActiveRecord::Schema.define(version: 2019_05_27_042024) do
 
   create_table "categories", force: :cascade do |t|
     t.string "title"
@@ -91,6 +91,8 @@ ActiveRecord::Schema.define(version: 2019_05_26_235532) do
     t.boolean "seasoned"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "category_id"
+    t.index ["category_id"], name: "index_shows_on_category_id"
     t.index ["network_id"], name: "index_shows_on_network_id"
   end
 
