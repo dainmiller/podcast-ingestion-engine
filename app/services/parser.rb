@@ -2,12 +2,11 @@ class Parser
   attr_accessor :parsed_feed
 
   def initialize xml
-    @xml = xml
-    parse
+    parse xml
   end
 
-  def parse
-    @parsed_feed = Feedjira::Feed.parse(@xml)
+  def parse xml
+    @parsed_feed = Feedjira::Feed.parse xml
   end
 
   def parsed?

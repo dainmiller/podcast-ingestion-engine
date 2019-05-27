@@ -2,12 +2,11 @@ class Validator
   attr_accessor :validate
 
   def initialize xml
-    @xml = xml
-    validate
+    validate xml
   end
 
-  def validate
-    @doc = Nokogiri::XML(@xml)
+  def validate xml
+    @doc = Nokogiri::XML xml
   end
 
   def valid?
