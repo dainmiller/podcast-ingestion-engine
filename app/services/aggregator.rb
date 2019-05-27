@@ -28,10 +28,11 @@ class Aggregator
       'Content-Type': 'application/xml'
     }).body
 
+    # TODO: Setting up for future refactor using functional #.inject
     [Validator, Parser, Saver].each do |klass|
       @validator  = klass.new(xml)      if klass.eql? Validator
-      @parser     = klass.new(xml)      if klass.eql? Parser and @validator.valid?
-      @saver      = klass.new(@parser)  if klass.eql? Saver and @validator.valid? and @parser.parsed?
+      @parser     = klass.new(xml)      if klass.eql? Parser  and @validator.valid?
+      @saver      = klass.new(@parser)  if klass.eql? Saver   and @validator.valid? and @parser.parsed?
     end
   end
 
