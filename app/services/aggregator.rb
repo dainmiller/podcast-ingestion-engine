@@ -29,6 +29,9 @@ class Aggregator
     }).body
 
     # TODO: Setting up for future refactor using functional #.inject
+    # TODO: The parser should take a validator object
+    # TODO: I could add an additional step that encapsolates the fetch (HTTParty), then..
+    # TODO: The validator should take a fetcher object
     [Validator, Parser, Saver].each do |klass|
       @validator  = klass.new(xml)      if klass.eql? Validator
       @parser     = klass.new(xml)      if klass.eql? Parser  and @validator.valid?
