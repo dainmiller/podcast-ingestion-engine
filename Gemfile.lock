@@ -96,6 +96,7 @@ GEM
       concurrent-ruby (~> 1.0)
     jbuilder (2.9.1)
       activesupport (>= 4.2.0)
+    jemalloc (1.0.1)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -240,6 +241,7 @@ DEPENDENCIES
   feedjira
   httparty
   jbuilder (~> 2.5)
+  jemalloc
   listen (>= 3.0.5, < 3.2)
   mini_magick (~> 4.8)
   pg
