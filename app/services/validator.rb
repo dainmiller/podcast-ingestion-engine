@@ -1,5 +1,6 @@
 class Validator
   attr_accessor :validate
+
   def initialize xml
     @xml = xml
     validate

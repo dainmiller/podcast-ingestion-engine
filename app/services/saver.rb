@@ -1,4 +1,5 @@
 class Saver
+
   def initialize parser
     @parser = parser
     save
@@ -6,11 +7,12 @@ class Saver
 
   def save
     @show = Show.find_or_create_by!(title: @parser.parsed_feed.title)
-    @parser.parsed_feed.entries.each do |episode|
+
+    @parser.parsed_feed.entries.each do |entry|
       @show.episodes.find_or_create_by!(
-        title: episode.title,
-        description: episode.summary,
-        streaming_url: episode.enclosure_url
+        title: entry.title,
+        description: entry.summary,
+        streaming_url: entry.enclosure_url
       )
     end
   end

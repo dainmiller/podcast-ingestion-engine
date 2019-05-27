@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_26_194549) do
+ActiveRecord::Schema.define(version: 2019_05_26_235532) do
 
   create_table "categories", force: :cascade do |t|
     t.string "title"
@@ -39,6 +39,13 @@ ActiveRecord::Schema.define(version: 2019_05_26_194549) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["show_id"], name: "index_episodes_on_show_id"
+  end
+
+  create_table "feeds", force: :cascade do |t|
+    t.string "feed"
+    t.date "parsed_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "guests", force: :cascade do |t|
