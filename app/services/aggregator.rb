@@ -31,7 +31,7 @@ class Aggregator
     [Validator, Parser, Saver].each do |klass|
       @validator  = klass.new(xml)      if klass.eql? Validator
       @parser     = klass.new(xml)      if klass.eql? Parser and @validator.valid?
-      @saver      = klass.new(@parser)  if klass.eql? Saver and @parser.parsed?
+      @saver      = klass.new(@parser)  if klass.eql? Saver and @validator.valid? and @parser.parsed?
     end
   end
 

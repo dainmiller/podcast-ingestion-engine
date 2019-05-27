@@ -42,12 +42,6 @@ RSpec.describe Aggregator, type: :model do
       expect(@aggregator.parser.parsed?).to eq(true)
     end
 
-    # it "should not move onto the save step if not parsed" do
-    #   @aggregator.queue(feed: ["http://google.com"])
-    #   expect(@aggregator.parser.parsed?).to eq(false)
-    #   expect(@aggregator.saver).to be_nil
-    # end
-
     it "should save the feed passed in" do
       @aggregator.queue(feed: [feed_test_one])
       expect(@aggregator.saver.respond_to?(:save)).to eq(true)
