@@ -1,8 +1,8 @@
 class Parser
   attr_accessor :parsed_feed
 
-  def initialize xml
-    parse xml
+  def initialize validator
+    parse validator.xml
   end
 
   def parse xml
