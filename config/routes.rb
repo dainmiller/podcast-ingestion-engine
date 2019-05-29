@@ -3,6 +3,10 @@ Rails.application.routes.draw do
 
   resources :aggregators
   get '/add_feed;', to: 'aggregators#engress'
+  get 'index', to: 'api/v1/episodes#index'
+  get 'show', to: 'api/v1/episodes#show'
+  get 'index', to: 'api/v1/shows#index'
+  get 'show', to: 'api/v1/shows#show'
 
   # namespace :aggregation,
   #   defaults: { format: 'json' },

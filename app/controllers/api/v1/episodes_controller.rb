@@ -1,10 +1,13 @@
-# TODO: Use respond_with / respond_to :json
-# TODO: ^ This allows us to use jbuilder views
-class EpisodesController < ApiController
+class Api::V1::EpisodesController < ApiController
 
   def index
     @episodes = Show.find(params[:show_id]).episodes
     render json: @episodes
+  end
+
+  def show
+    @episode = Episode.find(params[:id])
+    render json: @episode
   end
 
 end

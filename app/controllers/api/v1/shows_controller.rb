@@ -1,6 +1,4 @@
-# TODO: Use respond_with / respond_to :json
-# TODO: ^ This allows us to use jbuilder views
-class ShowsController < ApiController
+class Api::V1::ShowsController < ApiController
 
   def index
     @shows = Show.all
