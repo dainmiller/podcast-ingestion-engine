@@ -2,11 +2,14 @@ Rails.application.routes.draw do
   root to: 'shows#index', as: :json
 
   resources :aggregators
+
   get '/add_feed;', to: 'aggregators#engress'
-  get 'index', to: 'api/v1/episodes#index'
-  get 'show', to: 'api/v1/episodes#show'
-  get 'index', to: 'api/v1/shows#index'
-  get 'show', to: 'api/v1/shows#show'
+  get 'index',      to: 'api/v1/episodes#index'
+  get 'show',       to: 'api/v1/episodes#show'
+  get 'index',      to: 'api/v1/shows#index'
+  get 'show',       to: 'api/v1/shows#show'
+  get 'guests',     to: 'api/v1/people#guests'
+  get 'hosts',      to: 'api/v1/people#hosts'
 
   # namespace :aggregation,
   #   defaults: { format: 'json' },
@@ -22,24 +25,14 @@ Rails.application.routes.draw do
   namespace :content,
     defaults: { format: 'json' },
     constraints: { subdomain: 'content' } do
-
     namespace :v1, path: '/' do
-
-
       resources :networks
-
       resources :shows do
-
         resources :episodes do
-
           resources :assets
-
           resources :media
-
         end
-
         resources :assets
-
       end
     end
   end
