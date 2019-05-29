@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get 'show',       to: 'api/v1/shows#show'
   get 'guests',     to: 'api/v1/people#guests'
   get 'hosts',      to: 'api/v1/people#hosts'
+  get 'guest',      to: 'api/v1/people#guest'
+  get 'host;',      to: 'api/v1/people#host' 
 
   # namespace :aggregation,
   #   defaults: { format: 'json' },

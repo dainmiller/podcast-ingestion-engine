@@ -2,6 +2,7 @@ class Show < ApplicationRecord
   belongs_to :network, optional: true
   belongs_to :category, optional: true
   has_many :episodes
+  has_many :hosts
 
   def self.save_show_from(parsed_feed:, category: category)
     instance = self.find_or_create_by! title: parsed_feed.title
