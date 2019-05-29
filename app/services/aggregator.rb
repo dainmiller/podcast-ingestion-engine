@@ -25,7 +25,6 @@ class Aggregator
 
   private
   def run! feed
-    # TODO: Setting up for future refactor using functional #.inject
     [Fetcher, Validator, Parser, Saver].each do |klass|
       @fetcher    = klass.new(feed)       if klass.eql? Fetcher
       @validator  = klass.new(@fetcher)   if klass.eql? Validator and fetched?
