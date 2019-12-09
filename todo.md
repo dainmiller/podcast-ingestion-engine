@@ -218,7 +218,7 @@
   - Asset_id
   - Slug
   - Earwolf_id
-  - Stitcher_id
+  - PodcastIngestionEngine_id
   - Stagebloc_id
   - Wolfpub_id
   - Youtube_url

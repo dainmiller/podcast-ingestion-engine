@@ -733,7 +733,7 @@ DROP TABLE IF EXISTS `DCActivities`;
 CREATE TABLE `DCActivities` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `id_StitcherUser` int(10) unsigned NOT NULL,
+  `id_PodcastIngestionEngineUser` int(10) unsigned NOT NULL,
   `id_ActivityType` int(2) unsigned NOT NULL,
   `additionalDetail` varchar(127) DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -827,7 +827,7 @@ CREATE TABLE `DCDocuments` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `is_Active` int(1) unsigned NOT NULL DEFAULT '1',
-  `id_StitcherUser` int(10) unsigned NOT NULL,
+  `id_PodcastIngestionEngineUser` int(10) unsigned NOT NULL,
   `id_Category` int(2) unsigned NOT NULL,
   `linkText` varchar(127) NOT NULL,
   `URL` varchar(127) NOT NULL,
@@ -2332,7 +2332,7 @@ DROP TABLE IF EXISTS `PPActivities`;
 CREATE TABLE `PPActivities` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `id_StitcherUser` int(10) unsigned NOT NULL,
+  `id_PodcastIngestionEngineUser` int(10) unsigned NOT NULL,
   `id_ActivityType` int(2) unsigned NOT NULL,
   `additionalDetail` varchar(127) DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -2385,7 +2385,7 @@ CREATE TABLE `PPUsers` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `valid` int(1) unsigned NOT NULL DEFAULT '1',
-  `id_StitcherUser` int(10) unsigned NOT NULL,
+  `id_PodcastIngestionEngineUser` int(10) unsigned NOT NULL,
   `id_RSSProvider` int(10) unsigned NOT NULL,
   `password` varchar(63) DEFAULT NULL,
   `userType` enum('stitcher','partner') NOT NULL DEFAULT 'partner',
@@ -2413,13 +2413,13 @@ CREATE TABLE `PPUsers` (
   `promotionPlans` varchar(255) DEFAULT NULL,
   `twitterName` varchar(255) DEFAULT NULL,
   `facebookPage` varchar(255) DEFAULT NULL,
-  `heardAboutStitcher` varchar(255) DEFAULT NULL,
+  `heardAboutPodcastIngestionEngine` varchar(255) DEFAULT NULL,
   `anythingElse` varchar(255) DEFAULT NULL,
   `agreesToTerms` int(1) unsigned NOT NULL DEFAULT '0',
   `mailingList` int(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `id_provider_idx` (`id_RSSProvider`),
-  KEY `user_id_idx` (`id_StitcherUser`)
+  KEY `user_id_idx` (`id_PodcastIngestionEngineUser`)
 ) ENGINE=InnoDB AUTO_INCREMENT=173826 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -2591,7 +2591,7 @@ DROP TABLE IF EXISTS `PartnerFeedRequests`;
 CREATE TABLE `PartnerFeedRequests` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `id_StitcherUser` int(10) unsigned NOT NULL,
+  `id_PodcastIngestionEngineUser` int(10) unsigned NOT NULL,
   `showName` text NOT NULL,
   `feedURL` text NOT NULL,
   `bitRate` varchar(15) DEFAULT NULL,
@@ -2678,7 +2678,7 @@ DROP TABLE IF EXISTS `PartnerRequests`;
 CREATE TABLE `PartnerRequests` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `id_StitcherUser` int(10) unsigned NOT NULL,
+  `id_PodcastIngestionEngineUser` int(10) unsigned NOT NULL,
   `first_name` varchar(63) NOT NULL,
   `last_name` varchar(127) NOT NULL,
   `email` varchar(127) NOT NULL,
@@ -2702,7 +2702,7 @@ CREATE TABLE `PartnerRequests` (
   `promotionPlans` varchar(255) DEFAULT NULL,
   `twitterName` varchar(255) DEFAULT NULL,
   `facebookPage` varchar(255) DEFAULT NULL,
-  `heardAboutStitcher` varchar(255) DEFAULT NULL,
+  `heardAboutPodcastIngestionEngine` varchar(255) DEFAULT NULL,
   `anythingElse` varchar(255) DEFAULT NULL,
   `agreesToTerms` int(1) unsigned NOT NULL DEFAULT '0',
   `id_TermsOfService` int(4) NOT NULL,

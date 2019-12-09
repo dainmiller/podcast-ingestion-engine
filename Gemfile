@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.5.3'
 
+gem 'rename'
 gem 'rails', '~> 5.2.3'
 gem 'puma', '~> 3.11'
 gem 'sass-rails', '~> 5.0'
